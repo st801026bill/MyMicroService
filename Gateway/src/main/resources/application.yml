@@ -6,8 +6,15 @@ spring:
     name: gateway
   cloud:
     gateway:
+#      discovery:#        locator:#          enabled: false
+#          lower-case-service-id: true
       routes:
       - id: service1_route
         uri: lb://MICROSERVICE1
         predicates:
         - Path=/service1/**
+        
+#eureka:#  instance:
+#    prefer-ip-address: true
+#  client:
+#    service-url:#      defaultZone: http://localhost:8761/eureka/

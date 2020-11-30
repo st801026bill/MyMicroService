@@ -1,9 +1,14 @@
+spring:
+  application:
+    name: naming-server
+
 server:
   port: 8761
 
 eureka:
-  instance:
-    hostname: localhost
+#  instance:
+#    prefer-ip-address: true
+#    hostname: localhost
   client:
     register-with-eureka: false
     fetch-registry: false
