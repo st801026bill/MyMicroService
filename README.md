@@ -73,6 +73,6 @@ spring.application.name=microservice1
 ```
 
 **三、執行順序**
-1. 啟動NamingServer(Eureka)，已啟用服務註冊與發現機制。
+1. 啟動NamingServer(Eureka)，執行`http://localhost:8761/`，已啟用服務註冊與發現機制。
 2. 啟動Gateway 與 SpringBoot專案。
 3. Postman執行 `curl post http://localhost:8765/service1/method1`，透過gateway在yml中的設定，將request導至對應的服務(MicroService1)做後續處理。
