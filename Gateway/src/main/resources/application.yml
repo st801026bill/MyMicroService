@@ -1,0 +1,13 @@
+server:
+  port: 8765
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+      - id: service1_route
+        uri: lb://MICROSERVICE1
+        predicates:
+        - Path=/service1/**
