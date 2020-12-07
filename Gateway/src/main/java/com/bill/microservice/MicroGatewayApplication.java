@@ -7,14 +7,13 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder.Builder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.MediaType;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-public class GatewayApplication {
+public class MicroGatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GatewayApplication.class, args);
+		SpringApplication.run(MicroGatewayApplication.class, args);
 	}
 	
 	@Bean
