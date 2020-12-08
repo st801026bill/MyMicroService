@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bill</groupId>
-	<artifactId>NamingServer</artifactId>
+	<artifactId>MicroNamingServer</artifactId>
 	<version>1.0</version>
-	<name>NamingServer</name>
+	<name>MicroNamingServer</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

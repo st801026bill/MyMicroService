@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bill</groupId>
-	<artifactId>Microservice1</artifactId>
+	<artifactId>MicroService1</artifactId>
 	<version>1.0</version>
-	<name>Microservice1</name>
+	<name>MicroService1</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
