@@ -8,7 +8,7 @@
 		<version>2.3.7.BUILD-SNAPSHOT</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.bill</groupId>
+	<groupId>com.bill.microservice</groupId>
 	<artifactId>MicroNamingServer</artifactId>
 	<version>1.0</version>
 	<name>MicroNamingServer</name>

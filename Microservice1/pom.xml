@@ -8,7 +8,7 @@
 		<version>2.3.7.BUILD-SNAPSHOT</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.bill</groupId>
+	<groupId>com.bill.microservice</groupId>
 	<artifactId>MicroService1</artifactId>
 	<version>1.0</version>
 	<name>MicroService1</name>
@@ -27,6 +27,13 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		
+		<!-- Micro Project -->
+		<dependency>
+			<groupId>com.biil.microservice</groupId>
+		  	<artifactId>MicroUtil</artifactId>
+		  	<version>1.0</version>
 		</dependency>
 
 		<dependency>
