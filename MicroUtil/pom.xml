@@ -7,7 +7,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	
-  	<groupId>com.biil.microservice</groupId>
+  	<groupId>com.bill.microservice</groupId>
   	<artifactId>MicroUtil</artifactId>
   	<version>1.0</version>
 
@@ -15,6 +15,13 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<!-- thirt party libs -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 	

@@ -29,10 +29,22 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 		
+		<!-- thirt party libs -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
 		<!-- Micro Project -->
 		<dependency>
-			<groupId>com.biil.microservice</groupId>
+			<groupId>com.bill.microservice</groupId>
 		  	<artifactId>MicroUtil</artifactId>
+		  	<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bill.microservice</groupId>
+		  	<artifactId>MicroBeans</artifactId>
 		  	<version>1.0</version>
 		</dependency>
 
