@@ -1,5 +1,9 @@
 package com.bill.microservice;
 
+import java.util.HashMap;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -7,11 +11,25 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder.Builder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.MediaType;
 
+import com.bill.microservice.base.BaseWebGatewayReq;
+import com.bill.microservice.base.BaseWebGatewayRes;
+import com.bill.microservice.base.BaseWebGatewayRes.BaseWebGatewayMWHeaderRes;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Mono;
+
+@Slf4j
 @EnableDiscoveryClient
 @SpringBootApplication
 public class MicroGatewayApplication {
 
+	@Autowired
+	ObjectMapper mapper;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(MicroGatewayApplication.class, args);
 	}
@@ -27,15 +45,38 @@ public class MicroGatewayApplication {
 	
 	private Builder createRoute(Builder routes, String uri, String id, String path) {
 		return routes.route(id, r -> r.path(path)
-//				.filters(f -> f.modifyRequestBody(String.class, Object.class, MediaType.APPLICATION_JSON_VALUE,
-//						(exchange, s) -> {
-//							return null;
-//						})
-//				.modifyResponseBody(String.class, Object.class, MediaType.APPLICATION_JSON_VALUE,
-//						(exchange, s) -> {
-//							return null;
-//						})
-//				)
+				.filters(f -> f.modifyRequestBody(String.class, Object.class, MediaType.APPLICATION_JSON_VALUE,
+						(exchange, s) -> {
+							BaseWebGatewayReq req = null;
+							try {
+								req = mapper.readValue(s, BaseWebGatewayReq.class);
+								return Mono.just(req);
+							} catch (Exception e) {
+								// TODO: handle exception
+								log.error(e.getMessage());
+								return null;
+							} finally {
+								log.info("==== geteway request URI: {}, ID: {}, PATH: {}, request: {}", uri, id, path, req);
+							}
+						})
+				.modifyResponseBody(String.class, Object.class, MediaType.APPLICATION_JSON_VALUE,
+						(exchange, s) -> {
+							BaseWebGatewayRes<HashMap<String, Object>> res = null;
+							try {
+								HashMap<String, Object> tranrs = mapper.readValue(s, HashMap.class);
+								String txnseq = UUID.randomUUID().toString();
+								res = new BaseWebGatewayRes<>(new BaseWebGatewayMWHeaderRes(txnseq, "", ""), tranrs);
+								
+								return Mono.just(res);
+							} catch (JsonProcessingException e) {
+								// TODO Auto-generated catch block
+								log.error(e.getMessage());
+								return null;
+							} finally {
+								log.info("==== geteway response URI: {}, ID: {}, PATH: {}, request: {}", uri, id, path, res);
+							}
+						})
+				)
 				.uri(uri));
 	}
 

@@ -1,5 +1,5 @@
 package com.bill.microservice.base;
 
-public interface BaseDtoRes {
+public class BaseDtoRes {
 
 }
