@@ -2,6 +2,7 @@
 **一、環境**
 1. Spring Boot : `2.3.7 (SNAPSHOT)`
 2. Spring Cloud : `Hoxton.SR9`
+3. MyBatis : `1.4.0`
 
 **二、專案目錄**
 1. Spring Eureka (Naming Service)
