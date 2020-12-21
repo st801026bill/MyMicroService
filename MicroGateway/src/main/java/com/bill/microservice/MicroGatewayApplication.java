@@ -16,6 +16,7 @@ import org.springframework.http.MediaType;
 import com.bill.microservice.base.BaseWebGatewayReq;
 import com.bill.microservice.base.BaseWebGatewayRes;
 import com.bill.microservice.base.BaseWebGatewayRes.BaseWebGatewayMWHeaderRes;
+import com.bill.microservice.common.exception.ErrorType;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -65,7 +66,16 @@ public class MicroGatewayApplication {
 							try {
 								HashMap<String, Object> tranrs = mapper.readValue(s, HashMap.class);
 								String txnseq = UUID.randomUUID().toString();
-								res = new BaseWebGatewayRes<>(new BaseWebGatewayMWHeaderRes(txnseq, "", ""), tranrs);
+								
+								/*
+								 * 	正常情況會回BaseDtoRes，必須再塞入BaseWebGateWayRes才能輸出
+								 * 	但ExceptionHandler會丟回完整的BaseWebGateWayRes，直接輸出即可
+								 */
+								
+								res = tranrs.containsKey("MWHEADER") && tranrs.containsKey("TRANRS")?
+										mapper.convertValue(tranrs, BaseWebGatewayRes.class):
+										new BaseWebGatewayRes<>(new BaseWebGatewayMWHeaderRes(txnseq, ErrorType.SUCCESS.getCode(), ErrorType.SUCCESS.getMessage()), tranrs);
+								res.getMwheader().setTxnseq(txnseq);
 								
 								return Mono.just(res);
 							} catch (JsonProcessingException e) {
