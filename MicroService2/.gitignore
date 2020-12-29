@@ -1,29 +1,8 @@
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
-!**/src/test/**
-
-
-build/
-**/bin/
-**/classes/
-**/maven-archiver/
-**/maven-status/
-**/surefire-reports/
-.mvn/
-*.original
-*.classpath
-*.prefs
-*.project
-*.class
-*.pmd
-application-local.properties
-log/
-reports/
-src/generated/
-src/main/resources/wsdl/
-log-backup/
+!**/src/main/**/target/
+!**/src/test/**/target/
 
 ### STS ###
 .apt_generated
@@ -47,8 +26,8 @@ log-backup/
 /nbdist/
 /.nb-gradle/
 build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
-
-document/MBG/mysql/
