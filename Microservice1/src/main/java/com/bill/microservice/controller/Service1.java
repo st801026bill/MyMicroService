@@ -13,8 +13,10 @@ import com.bill.microservice.base.BaseWebGatewayReq;
 import com.bill.microservice.common.exception.ErrorType;
 import com.bill.microservice.common.exception.ModuleException;
 import com.bill.microservice.service.Service1ReqResWrapImpl;
+import com.bill.microservice.service.Service1Service2CallImpl;
 import com.bill.microservice.service.Service1UtilCallImpl;
 import com.bill.microservice.service1.Service1ReqResWrapDtoReq;
+import com.bill.microservice.service1.Service1Service2CallDtoReq;
 import com.bill.microservice.service1.Service1UtilCallDtoReq;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +31,10 @@ public class Service1 {
 	
 	@Autowired
 	Service1ReqResWrapImpl service1ReqResWrapImpl;
+	
+	@Autowired
+	Service1Service2CallImpl service1Service2CallImpl;
+	
 	
 	//1. 呼叫"MicroUtil method"
 	@PostMapping(value = "/util/call")
@@ -50,4 +56,10 @@ public class Service1 {
 		throw new ModuleException(ErrorType.UNKNOW_ERROR);
 	}
 	
+	//4. 透過 feign 調用 Service2
+	@PostMapping(value = "/service2/call")
+	public BaseDtoRes callService2(@RequestBody @Valid BaseWebGatewayReq<Service1Service2CallDtoReq> gatewayReq) {
+		log.info("Got Request Body:{}", gatewayReq);
+		return service1Service2CallImpl.process(gatewayReq);
+	}
 }

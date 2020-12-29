@@ -23,7 +23,7 @@ public class Service2 {
 	@Autowired
 	Service2FeignCallImpl service2FeignCallImpl;
 	
-	//1. 透過 feign 呼叫 MicroService2
+	//1. 透過service1 feign 呼叫次 api
 	@PostMapping(value = "/feign/call")
 	public BaseDtoRes callByFeign(@RequestBody @Valid BaseWebGatewayReq<Service2FeignCallDtoReq> gatewayReq) {
 		log.info("Got Request Body:{}", gatewayReq);

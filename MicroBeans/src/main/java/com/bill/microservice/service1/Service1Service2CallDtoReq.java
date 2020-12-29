@@ -1,4 +1,4 @@
-package com.bill.microservice.service2;
+package com.bill.microservice.service1;
 
 import com.bill.microservice.base.BaseDtoReq;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,7 +14,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Service2FeignCallDtoReq extends BaseDtoReq {
+public class Service1Service2CallDtoReq extends BaseDtoReq {
 	@JsonProperty("STUDENT_ID")
 	private String studentId;
 	

@@ -27,7 +27,7 @@ public class BaseWebGatewayReq<T> {
 	@Data
 	@NoArgsConstructor
 	@AllArgsConstructor
-	public class BaseWebGatewayMWHeaderReq {
+	public static class BaseWebGatewayMWHeaderReq {
 		
 		@Valid
 		@NotBlank(message = "TXNSEQ")
