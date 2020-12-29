@@ -1,6 +1,6 @@
 package com.bill.microservice.service1;
 
-import com.bill.microservice.base.BaseDtoRes;
+import com.bill.microservice.base.BaseDtoReq;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -14,15 +14,10 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Service1TestDtoRes extends BaseDtoRes {
-	
+public class Service1ReqResWrapDtoReq extends BaseDtoReq {
 	@JsonProperty("STUDENT_ID")
 	private String studentId;
 
 	@JsonProperty("STUDENT_NAME")
-	private String studentName;
-	
-	@JsonProperty("COMMENT")
-	private String comment;
-	
+	private String studentName;	
 }

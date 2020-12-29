@@ -12,9 +12,10 @@ import com.bill.microservice.base.BaseDtoRes;
 import com.bill.microservice.base.BaseWebGatewayReq;
 import com.bill.microservice.common.exception.ErrorType;
 import com.bill.microservice.common.exception.ModuleException;
-import com.bill.microservice.service.Service1TestImpl;
-import com.bill.microservice.service1.Service1TestDtoReq;
-import com.bill.microservice.util.TestUtil;
+import com.bill.microservice.service.Service1ReqResWrapImpl;
+import com.bill.microservice.service.Service1UtilCallImpl;
+import com.bill.microservice.service1.Service1ReqResWrapDtoReq;
+import com.bill.microservice.service1.Service1UtilCallDtoReq;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,33 +23,31 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/service1")
 public class Service1 {
+		
+	@Autowired
+	Service1UtilCallImpl service1UtilCallImpl;
 	
 	@Autowired
-	Service1TestImpl service1TestImpl;
+	Service1ReqResWrapImpl service1ReqResWrapImpl;
 	
-	@Autowired
-	TestUtil testUtil;
-	
-	@PostMapping(value = "/method1")
-	public String method1() {
-		return "local method1";
-	}
-	
-	@PostMapping(value = "/method2")
-	public String callTestUtil() {
-		return testUtil.callTestUtil();
-	}
-	
-	@PostMapping(value = "/test")
-	public BaseDtoRes testService1(@RequestBody @Valid BaseWebGatewayReq<Service1TestDtoReq> gatewayReq) {
+	//1. 呼叫"MicroUtil method"
+	@PostMapping(value = "/util/call")
+	public BaseDtoRes callTestUtil(@RequestBody @Valid BaseWebGatewayReq<Service1UtilCallDtoReq> gatewayReq) {
 		log.info("Got Request Body:{}", gatewayReq);
-		return service1TestImpl.process(gatewayReq);
+		return service1UtilCallImpl.process(gatewayReq);
 	}
 	
+	//2. req,res封裝統一格式
+	@PostMapping(value = "/reqres/wrap")
+	public BaseDtoRes testService1(@RequestBody @Valid BaseWebGatewayReq<Service1ReqResWrapDtoReq> gatewayReq) {
+		log.info("Got Request Body:{}", gatewayReq);
+		return service1ReqResWrapImpl.process(gatewayReq);
+	}
+	
+	//3. 例外處理
 	@PostMapping(value = "/exception/throw")
 	public void throwException() {
-		if(true) throw new ModuleException(ErrorType.DATA_NOT_FOUND_ERROR);
-		return;
+		throw new ModuleException(ErrorType.UNKNOW_ERROR);
 	}
 	
 }

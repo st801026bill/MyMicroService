@@ -1,6 +1,5 @@
 package com.bill.microservice.common.exception;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
