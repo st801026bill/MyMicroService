@@ -79,11 +79,16 @@ eureka:
 ```
 
 **3. Spring Boot 專案**
+----------------
+1. MicroService1
+2. MicroService2
+----------------
 
 dependency
 ```sql
-1. Eureka Discovery Client
-2. Spring Web
+1. Spring Web
+2. Eureka Discovery Client
+3. Open Feign
 ```
 
 application.properties
