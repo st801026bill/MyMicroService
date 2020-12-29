@@ -40,6 +40,7 @@ public class MicroGatewayApplication {
 		Builder routes = builder.routes();
 		
 		routes = createRoute(routes, "lb://MICROSERVICE1", "service1_route", "/service1/**");
+		routes = createRoute(routes, "lb://MICROSERVICE2", "service2_route", "/service2/**");
 		
 		return routes.build();
 	}
