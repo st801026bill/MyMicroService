@@ -12,7 +12,7 @@
 
 
 **1. Spring Eureka (Naming Service)**
-
+-------------------------------------
 dependency
 ```sql
 1. Eureka Server
@@ -40,7 +40,7 @@ eureka:
 ```
 
 **2. Spring Gateway**
-
+---------------------
 dependency
 ```sql
 1. Eureka Discovery Client
@@ -79,7 +79,7 @@ eureka:
 ```
 
 **3. Spring Boot 專案**
-----------------
+-----------------------
 1. MicroService1
 2. MicroService2
 ----------------
