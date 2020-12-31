@@ -1,4 +1,4 @@
-package com.bill.microservice.config;
+package com.bill.microservice.config.datasource;
 
 import javax.sql.DataSource;
 
@@ -13,8 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-
-import com.bill.microservice.config.datasource.DataSourceConfig;
 
 @Configuration
 @MapperScan(basePackages = "com.bill.microservice.dao.db1", sqlSessionTemplateRef = "DB1SessionTemplate")

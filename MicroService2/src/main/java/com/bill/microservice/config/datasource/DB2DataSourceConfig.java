@@ -1,4 +1,4 @@
-package com.bill.microservice.config;
+package com.bill.microservice.config.datasource;
 
 import javax.sql.DataSource;
 
