@@ -12,10 +12,12 @@ import org.mybatis.dynamic.sql.render.RenderingStrategy;
 import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 
 import com.bill.microservice.dao.db2.mapper.StudentMapper;
 import com.bill.microservice.dao.db2.model.Student;
 
+@Repository
 public class StudentDb2Dao {
 	@Autowired
 	@Qualifier("DB2StudentMapper")

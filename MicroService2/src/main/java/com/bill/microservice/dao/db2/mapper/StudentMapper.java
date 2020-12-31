@@ -1,13 +1,16 @@
 package com.bill.microservice.dao.db2.mapper;
 
-import static com.bill.microservice.dao.db2.mapper.StudentDynamicSqlSupport.*;
-import static org.mybatis.dynamic.sql.SqlBuilder.*;
+import static com.bill.microservice.dao.db2.mapper.StudentDynamicSqlSupport.student;
+import static com.bill.microservice.dao.db2.mapper.StudentDynamicSqlSupport.studentId;
+import static com.bill.microservice.dao.db2.mapper.StudentDynamicSqlSupport.studentName;
+import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
 import javax.annotation.Generated;
-import com.bill.microservice.dao.db2.model.Student;
+
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
@@ -32,6 +35,8 @@ import org.mybatis.dynamic.sql.update.render.UpdateStatementProvider;
 import org.mybatis.dynamic.sql.util.SqlProviderAdapter;
 import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 import org.springframework.stereotype.Repository;
+
+import com.bill.microservice.dao.db2.model.Student;
 
 @Mapper
 @Repository("DB2StudentMapper")

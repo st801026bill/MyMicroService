@@ -5,15 +5,19 @@ import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import com.bill.microservice.config.datasource.DataSourceConfig;
 
+@Configuration
+@MapperScan(basePackages = "com.bill.microservice.dao.db2", sqlSessionTemplateRef = "DB2SessionTemplate")
 public class DB2DataSourceConfig implements DataSourceConfig {
 	@Bean(name = "db2DataSource")
 	@ConfigurationProperties(prefix = "spring.datasource.db2")
@@ -38,7 +42,7 @@ public class DB2DataSourceConfig implements DataSourceConfig {
 		return new DataSourceTransactionManager(dataSource);
 	}
 
-	@Bean("db2SessionTemplate")
+	@Bean("DB2SessionTemplate")
 	@Override
 	public SqlSessionTemplate createSessionTemplate(
 			@Qualifier("db2SessionFactory") SqlSessionFactory sqlSessionFactory) {

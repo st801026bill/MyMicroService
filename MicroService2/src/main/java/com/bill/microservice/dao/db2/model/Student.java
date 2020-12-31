@@ -2,6 +2,9 @@ package com.bill.microservice.dao.db2.model;
 
 import javax.annotation.Generated;
 
+import lombok.Builder;
+
+@Builder
 public class Student {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     private Integer studentId;
