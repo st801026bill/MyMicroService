@@ -13,7 +13,7 @@
 
 
 
-**1. Spring Eureka (Naming Service)**
+**1. Spring Eureka (Naming Service)**  
 dependency
 ```sql
 1. Eureka Server
@@ -40,7 +40,7 @@ eureka:
 
 ```
 
-**2. Spring Gateway**
+**2. Spring Gateway**  
 dependency
 ```sql
 1. Eureka Discovery Client
@@ -104,3 +104,41 @@ spring.application.name=microservice1
 1. 啟動NamingServer(Eureka)，執行`http://localhost:8761/`，已啟用服務註冊與發現機制。
 2. 啟動Gateway 與 SpringBoot專案。
 3. Postman執行 `curl post http://localhost:8765/service1/method1`，透過gateway在yml中的設定，將request導至對應的服務(MicroService1)做後續處理。
+
+**四、DB 連線**
+---
+mybatis-generator參考document文件  
+這裡模仿有多個datasource的情況，在property與config需要另外做設定  
+DB1、DB2
+```sql
+create table STUDENT (
+ STUDENT_ID       integer primary key auto_increment,
+ STUDENT_NAME 		varchar(45),
+);
+```
+dependency
+```sql
+<dependency>
+    <groupId>org.mybatis.spring.boot</groupId>
+    <artifactId>mybatis-spring-boot-starter</artifactId>
+    <version>2.1.4</version>
+</dependency>
+<dependency>
+    <groupId>org.mybatis.dynamic-sql</groupId>
+    <artifactId>mybatis-dynamic-sql</artifactId>
+    <version>1.2.1</version>
+</dependency>
+```
+application.properties
+```sql
+spring.datasource.db1.jdbcUrl=jdbc:mysql://localhost:3306/micro_db1?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnect=true&failOverReadOnly=false
+spring.datasource.db1.username=root
+spring.datasource.db1.password=
+spring.datasource.db1.driverClassName=com.mysql.cj.jdbc.Driver
+
+spring.datasource.db2.jdbcUrl=jdbc:mysql://localhost:3306/micro_db2?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnect=true&failOverReadOnly=false
+spring.datasource.db2.username=root
+spring.datasource.db2.password=
+spring.datasource.db2.driverClassName=com.mysql.cj.jdbc.Driver
+```
+config 參考DB1DataSourceConfig、DB2DataSourceConfig
