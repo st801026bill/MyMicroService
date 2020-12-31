@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Hoxton.SR9</spring-cloud.version>
+		<mybatis-spring-boot-starter-version>2.1.4</mybatis-spring-boot-starter-version>
 	</properties>
 
 	<dependencies>
@@ -35,6 +36,16 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+		    <groupId>org.mybatis.spring.boot</groupId>
+		    <artifactId>mybatis-spring-boot-starter</artifactId>
+		    <version>${mybatis-spring-boot-starter-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.mybatis.dynamic-sql</groupId>
+		    <artifactId>mybatis-dynamic-sql</artifactId>
+		    <version>1.2.1</version>
+		</dependency>
 		
 		<!-- Micro Project -->
 		<dependency>
@@ -52,6 +63,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 
