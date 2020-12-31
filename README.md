@@ -109,13 +109,15 @@ spring.application.name=microservice1
 ---
 mybatis-generator參考document文件  
 這裡模仿有多個datasource的情況，在property與config需要另外做設定  
+
 DB1、DB2
 ```sql
 create table STUDENT (
  STUDENT_ID       integer primary key auto_increment,
- STUDENT_NAME 		varchar(45),
+ STUDENT_NAME     varchar(45),
 );
 ```
+
 dependency
 ```sql
 <dependency>
@@ -129,6 +131,7 @@ dependency
     <version>1.2.1</version>
 </dependency>
 ```
+
 application.properties
 ```sql
 spring.datasource.db1.jdbcUrl=jdbc:mysql://localhost:3306/micro_db1?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnect=true&failOverReadOnly=false
@@ -141,4 +144,5 @@ spring.datasource.db2.username=root
 spring.datasource.db2.password=
 spring.datasource.db2.driverClassName=com.mysql.cj.jdbc.Driver
 ```
+
 config 參考DB1DataSourceConfig、DB2DataSourceConfig
