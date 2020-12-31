@@ -113,9 +113,18 @@ mybatis-generator參考document文件
 DB1、DB2
 ```sql
 create table STUDENT (
- STUDENT_ID       integer primary key auto_increment,
- STUDENT_NAME     varchar(45),
+  STUDENT_ID       integer primary key auto_increment,
+  STUDENT_NAME     varchar(45),
 );
+insert into STUDENT (STUDENT_ID, STUDENT_NAME) values (100, 'Bill');
+insert into STUDENT (STUDENT_ID, STUDENT_NAME) values (101, 'Jack');
+
+create table STUDENT (
+  STUDENT_ID       integer primary key auto_increment,
+  STUDENT_NAME     varchar(45),
+);
+insert into STUDENT (STUDENT_ID, STUDENT_NAME) values (200, 'Mary');
+insert into STUDENT (STUDENT_ID, STUDENT_NAME) values (201, 'Linda');
 ```
 
 dependency
