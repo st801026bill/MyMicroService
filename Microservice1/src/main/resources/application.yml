@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  
+spring:
+  application:
+    name: microservice1
+  cloud:
+    kubernetes:
+      enabled: false
+      discovery:
+        enabled: false
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

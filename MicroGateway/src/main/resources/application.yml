@@ -5,6 +5,8 @@ spring:
   application:
     name: gateway
   cloud:
+    kubernetes:
+      enabled: false
     gateway:
       discovery:        locator:          enabled: false
           lower-case-service-id: true

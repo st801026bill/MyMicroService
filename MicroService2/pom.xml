@@ -97,5 +97,26 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	
+	<profiles>
+	    <!-- kubernetes -->
+	    <profile>
+	        <id>kubernetes</id>
+	        <dependencies>
+	            <!-- K8S dependency -->
+				<dependency>
+		            <groupId>org.springframework.cloud</groupId>
+		            <artifactId>spring-cloud-starter-kubernetes</artifactId>
+		        </dependency>
+		        <dependency>
+		            <groupId>org.springframework.cloud</groupId>
+		            <artifactId>spring-cloud-starter-kubernetes-all</artifactId>
+		        </dependency>
+		        <dependency>
+		            <groupId>org.springframework.cloud</groupId>
+		            <artifactId>spring-cloud-starter-kubernetes-ribbon</artifactId>
+		        </dependency>
+	        </dependencies>
+	    </profile>
+	</profiles>
 </project>
