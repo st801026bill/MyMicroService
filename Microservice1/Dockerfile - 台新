@@ -1,0 +1,16 @@
+﻿from 100.100.100.100:1111/dib/richart-openjdk-8:1.7
+
+arg SERVICE_NAME
+arg JAR_FILE
+
+COPY ${JAR_FILE} app.jar
+ENV JAVA_OPTS="-Xmx128m -Xms64m"
+ENV SPRING_PROFILES_ACTIVE="docker"
+LABEL APP=${SERVICE_NAME}
+ENTRYPOINT ["sh", "-c", "java -jar $JAVA_OPTS -Dspring.profiles.active=$SPRING_PROFILES_ACTIVE -Dhttp2.disable=true /app.jar"]
+
+==============================================================================================================================
+
+docker build -t 100.100.100.100:1111/dib/richart-gateway:2020010101 --build-arg SERVICE_NAME=RichartGateway --build-arg JAR_FILE=app.jar
+
+docker push 100.100.100.100:1111/dib/richart-gateway:2020010101
