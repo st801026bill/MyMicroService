@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bill.microservice.base.BaseDtoRes;
 import com.bill.microservice.base.BaseWebGatewayReq;
-import com.bill.microservice.common.exception.ErrorType;
-import com.bill.microservice.common.exception.ModuleException;
+import com.bill.microservice.service.Service1ExceptionThrowImpl;
 import com.bill.microservice.service.Service1ReqResWrapImpl;
 import com.bill.microservice.service.Service1Service2CallImpl;
 import com.bill.microservice.service.Service1UtilCallImpl;
+import com.bill.microservice.service1.Service1ExceptionThrowDtoReq;
 import com.bill.microservice.service1.Service1ReqResWrapDtoReq;
 import com.bill.microservice.service1.Service1Service2CallDtoReq;
 import com.bill.microservice.service1.Service1UtilCallDtoReq;
@@ -27,13 +27,16 @@ import lombok.extern.slf4j.Slf4j;
 public class Service1 {
 		
 	@Autowired
-	Service1UtilCallImpl service1UtilCallImpl;
+	private Service1UtilCallImpl service1UtilCallImpl;
 	
 	@Autowired
-	Service1ReqResWrapImpl service1ReqResWrapImpl;
+	private Service1ReqResWrapImpl service1ReqResWrapImpl;
+
+	@Autowired
+	private Service1ExceptionThrowImpl service1ExceptionThrowImpl;
 	
 	@Autowired
-	Service1Service2CallImpl service1Service2CallImpl;
+	private Service1Service2CallImpl service1Service2CallImpl;
 	
 	
 	//1. 呼叫"MicroUtil method"
@@ -52,8 +55,9 @@ public class Service1 {
 	
 	//3. 例外處理
 	@PostMapping(value = "/exception/throw")
-	public void throwException() {
-		throw new ModuleException(ErrorType.UNKNOW_ERROR);
+	public void throwException(@RequestBody @Valid BaseWebGatewayReq<Service1ExceptionThrowDtoReq> gatewayReq) {
+		log.info("Got Request Body:{}", gatewayReq);
+		service1ExceptionThrowImpl.process(gatewayReq);
 	}
 	
 	//4. 透過 feign 調用 Service2
