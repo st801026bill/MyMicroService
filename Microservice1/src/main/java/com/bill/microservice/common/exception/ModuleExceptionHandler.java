@@ -18,7 +18,7 @@ public class ModuleExceptionHandler {
 	
 	@ExceptionHandler(Exception.class)
 	public BaseWebGatewayRes<HashMap<String, Object>> handle(Exception ex) {
-		log.error(ex.getMessage());
+		ex.printStackTrace();
 		BaseWebGatewayRes<HashMap<String, Object>> res = new BaseWebGatewayRes<>(
 				new BaseWebGatewayMWHeaderRes("", ErrorType.UNKNOW_ERROR.getCode(), ErrorType.UNKNOW_ERROR.getMessage()), 
 				new HashMap<>());
@@ -27,6 +27,7 @@ public class ModuleExceptionHandler {
 	
 	@ExceptionHandler(ModuleException.class)
 	public BaseWebGatewayRes<HashMap<String, Object>> handleModule(ModuleException ex) {
+		ex.printStackTrace();
 		BaseWebGatewayRes<HashMap<String, Object>> res = new BaseWebGatewayRes<>(
 						new BaseWebGatewayMWHeaderRes("", ex.getErrorType().getCode(), ex.getErrorType().getMessage()), 
 						new HashMap<>());

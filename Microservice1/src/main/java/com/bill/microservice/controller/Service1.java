@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bill.microservice.base.BaseDtoRes;
 import com.bill.microservice.base.BaseWebGatewayReq;
 import com.bill.microservice.service.Service1ExceptionThrowImpl;
+import com.bill.microservice.service.Service1GetRequestWithContextImpl;
 import com.bill.microservice.service.Service1ReqResWrapImpl;
 import com.bill.microservice.service.Service1Service2CallImpl;
 import com.bill.microservice.service.Service1UtilCallImpl;
 import com.bill.microservice.service1.Service1ExceptionThrowDtoReq;
+import com.bill.microservice.service1.Service1GetRequestByContextDtoReq;
+import com.bill.microservice.service1.Service1GetRequestByContextDtoRes;
 import com.bill.microservice.service1.Service1ReqResWrapDtoReq;
 import com.bill.microservice.service1.Service1Service2CallDtoReq;
 import com.bill.microservice.service1.Service1UtilCallDtoReq;
@@ -38,6 +41,8 @@ public class Service1 {
 	@Autowired
 	private Service1Service2CallImpl service1Service2CallImpl;
 	
+	@Autowired
+	Service1GetRequestWithContextImpl service1GetRequestWithContextImpl;
 	
 	//1. 呼叫"MicroUtil method"
 	@PostMapping(value = "/util/call")
@@ -65,5 +70,12 @@ public class Service1 {
 	public BaseDtoRes callService2(@RequestBody @Valid BaseWebGatewayReq<Service1Service2CallDtoReq> gatewayReq) {
 		log.info("Got Request Body:{}", gatewayReq);
 		return service1Service2CallImpl.process(gatewayReq);
+	}
+	
+	//5. 透過RequestScopeContext取得完整的 BaseWebGatewayReq
+	@PostMapping(value = "/get/request/with/context")
+	public Service1GetRequestByContextDtoRes getRequestWithContext(@RequestBody @Valid BaseWebGatewayReq<Service1GetRequestByContextDtoReq> gatewayReq) {
+		log.info("Got Request Body:{}", gatewayReq);
+		return service1GetRequestWithContextImpl.process(gatewayReq);
 	}
 }
