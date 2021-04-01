@@ -60,7 +60,7 @@ public class LoggingInterceptor extends HandlerInterceptorAdapter {
 		String res = getResponseBody(response);
 		
 		BaseWebGatewayReq<Object> baseWebReq = mapper.readValue(req, BaseWebGatewayReq.class);
-		BaseWebGatewayRes<Object> baseWebRes = mapper.readValue(res, BaseWebGatewayRes.class);
+//		BaseWebGatewayRes<Object> baseWebRes = mapper.readValue(res, BaseWebGatewayRes.class);
 		
 		LoggingDto loggingDto = LoggingDto.builder()
 				.txn_seq(baseWebReq.getMwheader().getTxnseq())

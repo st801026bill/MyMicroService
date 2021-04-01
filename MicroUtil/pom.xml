@@ -17,6 +17,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		
+		<dependency>
+			<groupId>com.bill.microservice</groupId>
+			<artifactId>MicroBeans</artifactId>
+			<version>1.0</version>
+		</dependency>
+		
 		<!-- thirt party libs -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>

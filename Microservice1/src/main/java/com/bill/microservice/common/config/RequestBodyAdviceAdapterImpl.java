@@ -29,7 +29,11 @@ public class RequestBodyAdviceAdapterImpl extends RequestBodyAdviceAdapter {
 	@Override
 	public Object afterBodyRead(Object body, HttpInputMessage inputMessage, MethodParameter parameter, Type targetType,
 			Class<? extends HttpMessageConverter<?>> converterType) {
-		requestScopeContext.setBaseWebGatewayReq((BaseWebGatewayReq)body);
+		try {
+			requestScopeContext.setBaseWebGatewayReq((BaseWebGatewayReq)body);
+		} catch(ClassCastException ex) {
+			ex.printStackTrace();
+		}
 		return body;
 	}
 

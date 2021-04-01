@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Service1GetRequestWithContextImpl implements IBaseService<Service1GetRequestByContextDtoRes>{
 	
 	@Autowired
-	RequestScopeContext<BaseDtoReq> requestScopeContext;
+	RequestScopeContext requestScopeContext;
 	
 	@Override
 	public Service1GetRequestByContextDtoRes process(BaseWebGatewayReq<? extends BaseDtoReq> gatewayReq) {

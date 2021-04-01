@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
 import com.bill.microservice.base.BaseDtoReq;
-import com.bill.microservice.base.BaseWebGatewayRes;
+import com.bill.microservice.base.BaseWebGatewayReq;
 
 import lombok.Data;
 
@@ -12,5 +12,5 @@ import lombok.Data;
 @Data
 @RequestScope
 public class RequestScopeContext {
-	BaseWebGatewayRes<? extends BaseDtoReq> baseWebGatewayReq;
+	BaseWebGatewayReq<? extends BaseDtoReq> baseWebGatewayReq;
 }

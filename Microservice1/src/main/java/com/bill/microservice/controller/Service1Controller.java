@@ -13,11 +13,11 @@ import com.bill.microservice.base.BaseWebGatewayReq;
 import com.bill.microservice.service.Service1ExceptionThrowImpl;
 import com.bill.microservice.service.Service1GetRequestWithContextImpl;
 import com.bill.microservice.service.Service1ReqResWrapImpl;
+import com.bill.microservice.service.Service1Service2CallByRestTemplateImpl;
 import com.bill.microservice.service.Service1Service2CallImpl;
 import com.bill.microservice.service.Service1UtilCallImpl;
 import com.bill.microservice.service1.Service1ExceptionThrowDtoReq;
 import com.bill.microservice.service1.Service1GetRequestByContextDtoReq;
-import com.bill.microservice.service1.Service1GetRequestByContextDtoRes;
 import com.bill.microservice.service1.Service1ReqResWrapDtoReq;
 import com.bill.microservice.service1.Service1Service2CallDtoReq;
 import com.bill.microservice.service1.Service1UtilCallDtoReq;
@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/service1")
-public class Service1 {
+public class Service1Controller {
 		
 	@Autowired
 	private Service1UtilCallImpl service1UtilCallImpl;
@@ -42,7 +42,10 @@ public class Service1 {
 	private Service1Service2CallImpl service1Service2CallImpl;
 	
 	@Autowired
-	Service1GetRequestWithContextImpl service1GetRequestWithContextImpl;
+	private Service1GetRequestWithContextImpl service1GetRequestWithContextImpl;
+	
+	@Autowired
+	private Service1Service2CallByRestTemplateImpl service1Service2CallByRestTemplateImpl;
 	
 	//1. 呼叫"MicroUtil method"
 	@PostMapping(value = "/util/call")
@@ -74,8 +77,15 @@ public class Service1 {
 	
 	//5. 透過RequestScopeContext取得完整的 BaseWebGatewayReq
 	@PostMapping(value = "/get/request/with/context")
-	public Service1GetRequestByContextDtoRes getRequestWithContext(@RequestBody @Valid BaseWebGatewayReq<Service1GetRequestByContextDtoReq> gatewayReq) {
+	public BaseDtoRes getRequestWithContext(@RequestBody @Valid BaseWebGatewayReq<Service1GetRequestByContextDtoReq> gatewayReq) {
 		log.info("Got Request Body:{}", gatewayReq);
 		return service1GetRequestWithContextImpl.process(gatewayReq);
+	}
+	
+	//6. 透過 RestTemplate 調用 Service2
+	@PostMapping(value = "/service2/call/by/resttemplate")
+	public BaseDtoRes callService2ByRestTemplate(@RequestBody @Valid BaseWebGatewayReq<Service1Service2CallDtoReq> gatewayReq) {
+		log.info("Got Request Body:{}", gatewayReq);
+		return service1Service2CallByRestTemplateImpl.process(gatewayReq);
 	}
 }

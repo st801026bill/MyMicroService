@@ -11,6 +11,6 @@ import lombok.Data;
 @Component
 @Data
 @RequestScope
-public class RequestScopeContext<T extends BaseDtoReq> {
-	BaseWebGatewayReq<T> baseWebGatewayReq;
+public class RequestScopeContext {
+	BaseWebGatewayReq<? extends BaseDtoReq> baseWebGatewayReq;
 }
